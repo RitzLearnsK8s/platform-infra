@@ -1,0 +1,37 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: team-a
+  namespace: argocd
+spec:
+  description: Team A project - can deploy only to team-a namespace
+  sourceRepos:
+    - '*'   # tighten later to specific repos
+  destinations:
+    - namespace: team-a
+      server: https://kubernetes.default.svc
+  clusterResourceWhitelist:
+    - group: ""
+      kind: Namespace
+  namespaceResourceWhitelist:
+    - group: "*"
+      kind: "*"
+---
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: team-b
+  namespace: argocd
+spec:
+  description: Team B project - can deploy only to team-b namespace
+  sourceRepos:
+    - '*'
+  destinations:
+    - namespace: team-b
+      server: https://kubernetes.default.svc
+  clusterResourceWhitelist:
+    - group: ""
+      kind: Namespace
+  namespaceResourceWhitelist:
+    - group: "*"
+      kind: "*"
