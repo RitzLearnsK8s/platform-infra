@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: 'https://github.com/RitzLearnsK8s/platform-infra.git'
     targetRevision: main
-    path: clusters/eks-platform/bootstrap
+    path: clusters/eks-platform
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: platform
